@@ -52,10 +52,10 @@ class SavingAccount(Account):
     def add_to_savings(self):
         self.check_pass()
         save = int(input('Please enter the amount you want to move into saving: '))
-        if save > self.__balance:
+        if save > self._Account__balance:
             print('Your balance is insufficient.')
         else:
-            self.__balance -= save
+            self._Account__balance -= save
             self.__savings += save
 
     def check_savings(self):
@@ -131,4 +131,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
