@@ -1,4 +1,4 @@
-class Account():
+class Account:
     account_id = 0
 
     def __init__(self, name, balance=0):
@@ -14,7 +14,7 @@ class Account():
 
     def check_pass(self):
         check = ''
-        while check != self.__password:gh
+        while check != self.__password:
             check = input("Please enter your password: ")
             if check != self.__password:
                 print('Wrong password. Try again')
@@ -66,7 +66,7 @@ class SavingAccount(Account):
         self.i = (self.__savings * self.__time * 3 / 100)
 
     def inc_time(self):
-        # normally this would be automated but we'll do this manually
+        # normally this would be automated, but we'll do this manually
         print("ONLY ALLOWED FOR BANK OFFICIALS")
         time = int(input("Enter the time passed (in years) since the savings account was opened: "))
         self.__time += time
@@ -96,18 +96,34 @@ def main():
 
         option = ''
         while option not in ['1', '2', '3', '4']:
-            option = input()
+            option = input('Select your option: ')
 
         if option == '4':
             'Thank you for using Jupyter Banking.'
             break
 
         elif option == '1':
-            amount = int(input("Enter an amount to withdraw: "))
+            amount = ''
+            while type(amount) != int:
+                try:
+                    amount = int(input("Enter an amount to withdraw: "))
+                    if amount <= 0:
+                        print("You've entered a negative (or zero) value.")
+                        amount = ''
+                except ValueError:
+                    print('Please enter a positive integer value.')
             acc1.withdraw(amount)
 
         elif option == '2':
-            amount = int(input("Enter an amount to deposit: "))
+            amount = ''
+            while type(amount) != int:
+                try:
+                    amount = int(input("Enter an amount to deposit: "))
+                    if amount <= 0:
+                        print("You've entered a negative (or zero) value.")
+                        amount = ''
+                except ValueError:
+                    print('Please enter a positive integer value.')
             acc1.deposit(amount)
 
         elif option == '3':
